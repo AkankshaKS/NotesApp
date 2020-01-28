@@ -1,7 +1,8 @@
-package com.e.notesapp
+package com.e.notesapp.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.e.notesapp.R
 
 class MainActivity : AppCompatActivity() {
 
@@ -9,4 +10,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
     }
+
+
 }
