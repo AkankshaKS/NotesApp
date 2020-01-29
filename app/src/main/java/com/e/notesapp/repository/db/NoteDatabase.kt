@@ -1,4 +1,4 @@
-package com.e.notesapp.db
+package com.e.notesapp.repository.db
 
 import android.content.Context
 import androidx.room.Database
@@ -23,7 +23,7 @@ abstract class NoteDatabase : RoomDatabase() {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     NoteDatabase::class.java,
-                    "bookworker_db"
+                    "note_db"
                 ).build()
                 INSTANCE = instance
                 return instance
