@@ -1,28 +1,42 @@
 package com.e.notesapp.repository
 
+import android.app.Application
 import android.os.AsyncTask
+import android.os.Looper
+import android.util.Log
 import androidx.lifecycle.LiveData
 import com.e.notesapp.repository.db.Note
 import com.e.notesapp.repository.db.NoteDao
+import com.e.notesapp.repository.db.NoteDatabase
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
-class NoteRepository(private val noteDao: NoteDao) {
+class NoteRepository(private val application: Application) {
 
-    private val allNotes: LiveData<List<Note>> = noteDao.getAllNotes()
 
-    fun insert(note: Note) {
-        InsertNoteAsyncTask(
-            noteDao
-        ).execute(note)
+    private var noteDao: NoteDao? = null
+    private var allNotes: LiveData<List<Note>>? = null
+
+    init {
+        noteDao = NoteDatabase.getDatabase(application.applicationContext)?.noteDao()
+        allNotes = noteDao?.getAllNotes()
     }
 
-    private class InsertNoteAsyncTask(val noteDao: NoteDao) : AsyncTask<Note, Unit, Unit>() {
+    suspend fun insert(note: Note) {
+        withContext(Dispatchers.IO){
+            if (Looper.getMainLooper().getThread() == Thread.currentThread()){
+                Log.d("Print", "Main Thread")
+            } else {
+                Log.d("Print", "Background Thread")
+            }
 
-        override fun doInBackground(vararg note: Note) {
-            noteDao.insert(note[0])
+            noteDao?.insert(note)
         }
     }
 
-    fun getAllNotes(): LiveData<List<Note>> {
+
+
+    fun getAllNotes(): LiveData<List<Note>>?{
         return allNotes
     }
 

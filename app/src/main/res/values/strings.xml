@@ -2,4 +2,7 @@
     <string name="app_name">NotesApp</string>
     <string name="description">Description</string>
     <string name="title">Title</string>
+    <string name="notes_app">Notes App</string>
+    <string name="save">Save</string>
+    <string name="new_note">New Note</string>
 </resources>
