@@ -3,7 +3,6 @@ package com.e.notesapp.view
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.e.notesapp.R
@@ -21,7 +20,6 @@ class AddNoteActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_note)
-
         save_note.setOnClickListener {
             saveNote()
         }

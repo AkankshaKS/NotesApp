@@ -1,7 +1,6 @@
 package com.e.notesapp.repository
 
 import android.app.Application
-import android.os.AsyncTask
 import android.os.Looper
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -18,7 +17,7 @@ class NoteRepository(private val application: Application) {
     private var allNotes: LiveData<List<Note>>? = null
 
     init {
-        noteDao = NoteDatabase.getDatabase(application.applicationContext)?.noteDao()
+        noteDao = NoteDatabase.getDatabase(application.applicationContext).noteDao()
         allNotes = noteDao?.getAllNotes()
     }
 
@@ -29,12 +28,9 @@ class NoteRepository(private val application: Application) {
             } else {
                 Log.d("Print", "Background Thread")
             }
-
             noteDao?.insert(note)
         }
     }
-
-
 
     fun getAllNotes(): LiveData<List<Note>>?{
         return allNotes
