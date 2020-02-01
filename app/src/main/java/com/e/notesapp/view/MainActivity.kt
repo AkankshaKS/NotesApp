@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -66,7 +67,8 @@ class MainActivity : AppCompatActivity() {
         if (requestCode == ADD_NOTE_REQUEST && resultCode == Activity.RESULT_OK && data != null) {
             val newNote = Note(
                 data.getStringExtra(AddNoteActivity.EXTRA_TITLE),
-                data.getStringExtra(AddNoteActivity.EXTRA_DESCRIPTION)
+                data.getStringExtra(AddNoteActivity.EXTRA_DESCRIPTION),
+                data.getStringExtra(AddNoteActivity.EXTRA_TIME)
             )
             noteViewModel?.insert(newNote)
 
@@ -79,5 +81,7 @@ class MainActivity : AppCompatActivity() {
     companion object{
         private const val ADD_NOTE_REQUEST = 1
     }
+
+
 
 }

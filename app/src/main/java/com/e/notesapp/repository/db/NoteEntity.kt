@@ -7,8 +7,8 @@ import androidx.room.PrimaryKey
 data class Note(
 
     var title: String,
-
-    var description: String
+    var description: String,
+    val date : String
 
 ) {
 

@@ -5,4 +5,5 @@
     <string name="notes_app">Notes App</string>
     <string name="save">Save</string>
     <string name="new_note">New Note</string>
+    <string name="date">Date</string>
 </resources>
